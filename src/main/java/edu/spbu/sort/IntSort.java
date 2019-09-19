@@ -1,5 +1,6 @@
 package edu.spbu.sort;
-//qwe
+//qwe2
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

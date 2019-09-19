@@ -1,6 +1,5 @@
 package edu.spbu;
 
-import edu.spbu.MatrixGenerator;
 import org.junit.After;
 import org.junit.Test;
 
