@@ -1,10 +1,9 @@
 package edu.spbu.matrix;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Плотная матрица
@@ -14,6 +13,17 @@ public class DenseMatrix implements Matrix {
     private int nrows;
     private int ncols;
 
+
+
+    private DenseMatrix(double[][] input)
+    {
+        if (input.length > 0 )
+        {
+            DMatr=input;
+            nrows=input.length;
+            ncols=input[0].length;
+        }
+    }
     /**
      * загружает матрицу из файла
      *
@@ -65,25 +75,6 @@ public class DenseMatrix implements Matrix {
      * @param o - another matrix to multiply by
      * @return resulting matrix of the multiplication
      */
-    @Override
-    public Matrix mul(Matrix o) {
-        DenseMatrix DMtx = (DenseMatrix) o;
-        if (ncols == DMtx.nrows && DMatr != null && DMtx.DMatr != null) {
-            double[][] res = new double[nrows][DMtx.ncols];
-            DenseMatrix tDMtx = DMtx.Transpose();
-            for (int i = 0; i < nrows; ++i) {
-                for (int j = 0; j < tDMtx.nrows; ++j) {
-                    for (int k = 0; k < ncols; ++k) {
-                        res[i][j] += DMatr[i][k] * tDMtx.DMatr[j][k];
-                    }
-                }
-            }
-            return new DenseMatrix(res);
-        } else {
-            System.out.println("mul err");
-            return null;
-        }
-    }
 
 
     //транспозиция
@@ -103,7 +94,11 @@ public class DenseMatrix implements Matrix {
     @Override
     public Matrix mul(Matrix o) {
         DenseMatrix DMtx = (DenseMatrix) o;
-        if (ncols == DMtx.nrows && DMatr != null && DMtx.DMatr != null) {
+        if (ncols != DMtx.nrows)
+        {
+            System.out.println("matrix size match err");
+        }
+        if (DMatr != null && DMtx.DMatr != null) {
 
             double[][] res = new double[nrows][DMtx.ncols];
             DenseMatrix tDMtx = DMtx.Transpose();
@@ -127,9 +122,9 @@ public class DenseMatrix implements Matrix {
      * @param o - another matrix to multiply by
      * @return resulting matrix of the multiplication
      */
-    @Override
+    @Override                       //skip
     public Matrix dmul(Matrix o) {
-        return null;//skip
+        return null;
     }
 
     //to string
