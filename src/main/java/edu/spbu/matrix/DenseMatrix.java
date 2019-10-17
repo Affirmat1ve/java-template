@@ -80,8 +80,10 @@ public class DenseMatrix implements Matrix {
     //транспозиция
     private DenseMatrix Transpose() {
         double[][] transposedDMtx = new double[ncols][nrows];
-        for (int i = 0; i < ncols; ++i) {
-            for (int j = 0; j < nrows; ++j) {
+        for (int i = 0; i < ncols; ++i)
+        {
+            for (int j = 0; j < nrows; ++j)
+            {
                 transposedDMtx[i][j] = DMatr[j][i];
             }
         }
@@ -102,9 +104,12 @@ public class DenseMatrix implements Matrix {
 
             double[][] res = new double[nrows][DMtx.ncols];
             DenseMatrix tDMtx = DMtx.Transpose();
-            for (int i = 0; i < nrows; ++i) {
-                for (int j = 0; j < tDMtx.nrows; ++j) {
-                    for (int k = 0; k < ncols; ++k) {
+            for (int i = 0; i < nrows; ++i)
+            {
+                for (int j = 0; j < tDMtx.nrows; ++j)
+                {
+                    for (int k = 0; k < ncols; ++k)
+                    {
                         res[i][j] += DMatr[i][k] * tDMtx.DMatr[j][k];
                     }
                 }
@@ -134,12 +139,14 @@ public class DenseMatrix implements Matrix {
     public String toString() {
         StringBuilder resBuilder = new StringBuilder();
         resBuilder.append('\n');
-        for (int i = 0; i < nrows; ++i) {
+        for (int i = 0; i < nrows; ++i)
+        {
             resBuilder.append('[');
-            for (int j = 0; j < ncols; ++j) {
+            resBuilder.append(DMatr[i][0]);
+            for (int j = 0; j < ncols-1; ++j)
+            {
+                resBuilder.append(" ");
                 resBuilder.append(DMatr[i][j]);
-                if (j < ncols - 1)
-                    resBuilder.append(" ");
             }
             resBuilder.append("]\n");
 
